@@ -1,0 +1,102 @@
+{%extends "./base.html"%}
+{%load static%}
+
+{%block child_block%}
+<head>
+  <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Time Table Information</h2>
+        <div class="form-container">
+            <form method="POST">
+                
+                <div id="timeout">
+                    {% if form.error %}
+                        <p style="color:red;text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
+                    {% else %}
+                        <p style="color:rgb(13, 237, 13);text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
+                    {% endif %}
+                </div>
+                
+                <input type="hidden" name="id" value="{{ form.id }}">
+
+                <div class="input-name">
+                    <i class="fas fa-clock icon"></i>
+                    <select class="role" name="examTime" style="text-align: center;">
+                        <!-- <option value="" hidden>---- Select Exam Time ----</option> -->
+                        <option>7:00 AM to 10:00 AM</option>
+                        <option>11:00 AM to 2:00 PM</option>
+                        <option>3:00 PM to 6:00 PM</option>
+                    </select>
+                    <span style="color:red;margin-left:1px">{{ form.inputError.examTime }}</span>
+
+                </div>
+                <div class="input-name" style="padding-top: 30px;">
+                    <i class="fa fa-calendar icon"></i>
+                    <input type="date" placeholder="" name="examDate" value="{{ form.examDate }}"
+                      class="text-name" style="text-align: center;">
+                </div>
+                <div class="input-name" >
+                    <span style="color: red; margin-left:1px">{{form.inputError.examDate}}</span>
+                </div>
+                <div class="input-name">
+                    <label for="course_ID">Course Name<span style="color: red;margin-left:2px">*</span></label>
+                    <select class="role" name="course_ID" style="text-align: center;">
+                        <!-- <option value="">---- Select Course Name ----</option> -->
+                        <option value="{{form.course_ID}}">{{ form.courseName }}</option>
+                        {% for form in courseList %}
+                        <option value="{{ form.id }}">{{ form.courseName }}</option>
+                        {% endfor %}
+                    </select>
+                    <span style="color:red;margin-left:1px">{{ form.inputError.course_ID }}</span>
+
+                </div>
+                <div class="input-name">
+                    <label for="subjectName">Subject Name<span style="color: red;margin-left:2px">*</span></label>
+                    <select class="role" name="subject_ID" style="text-align: center;">
+                        <!-- <option value="">---- Select a subject Name ----</option> -->
+                        <option value="{{form.subject_ID}}">{{ form.subjectName }}</option>
+                        {% for form in subjectList %}
+                        <option value="{{ form.id }}">{{ form.SubjectName }}</option>
+                        {% endfor %}
+                    </select>
+                    <span style="color:red;margin-left:1px">{{ form.inputError.subject_ID }}</span>
+
+                </div>
+                <div class="input-name">
+                    <label for="semester">Semester<span style="color: red;margin-left:2px">*</span></label>
+                    <select class="role" name="semester" style="text-align: center;">
+                        <!-- <option value="" hidden>---- Select Semester ----</option> -->
+                        <option value="{{form.semester}}">{{ form.semester }}</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+
+                    </select>
+                    <span style="color:red;margin-left:1px">{{ form.inputError.semester }}</span>
+
+                </div>
+                <br>
+                <div class="input-button">
+                    <div class="row">
+                        <input type="submit" class="button" value="Save" style="margin-left:145px ;">
+                        <!-- <span style="margin-right: 20px;">  <a href="" class="button-1" style="text-align:center">reset</a></span> -->
+                        <a href="" class="button-1" style="text-align:center">Reset</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+{%endblock%}

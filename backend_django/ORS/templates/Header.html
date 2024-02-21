@@ -1,0 +1,193 @@
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/basic.css' %}">
+</head>
+<!-- -----------------------------Edit------------------------------ -->
+
+    
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <a class="navbar-brand" href="/ORS/Login/" >
+        <img src="{% static '/images/img3.png' %}" width="120" height="40"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        {%if request.session.user%}
+        <li class="nav-item">
+          <a class="nav-link" href="/ORS/Welcome/"><i class="fa fa-home icons"></i>
+              Home<span class="sr-only"></span> </a>
+        </li>
+        {%else%}
+        <li class="nav-item">
+          <a class="nav-link" href="/"><i class="fa fa-home icons"></i>
+              Home <span class="sr-only"></span></a>
+        </li>
+        {%endif%}
+
+        {% if request.session.user.role_Name == "Admin" %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/ORS/User/" id="navbardrop" data-toggle="dropdown">
+                <i class="fa fa-user icons"></i>
+                User
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/ORS/User/"><i class="fa fa-user"></i> User</a>
+                <a class="dropdown-item" href="/ORS/UserList/"><i class="fas fa-list"></i> UserList</a>
+            </div>
+        </li>
+
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/ORS/College/" id="navbardrop" data-toggle="dropdown">
+                <i class="fas fa-graduation-cap icons"></i>
+                College
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/ORS/College/"><i class="fas fa-graduation-cap" ></i> College</a>
+                <a class="dropdown-item" href="/ORS/CollegeList/"><i class="fas fa-list"></i> CollegeList</a>
+            </div>
+        </li>
+
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/ORS/CourseList/" id="navbardrop" data-toggle="dropdown">
+                <i class="fab fa-discourse icons"></i>
+                Course
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/ORS/Course/"><i class="fab fa-discourse"></i> Course</a>
+                <a class="dropdown-item" href="/ORS/CourseList/"><i class="fas fa-list"></i> CourseList</a>
+            </div>
+        </li>
+
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/ORS/Role/" id="navbardrop" data-toggle="dropdown">
+                <i class="fa fa-users icons"></i>
+                Role
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/ORS/Role/"> <i class="fa fa-users"></i> Role</a>
+                <a class="dropdown-item" href="/ORS/RoleList/"><i class="fas fa-list"></i> RoleList</a>
+            </div>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/ORS/Faculty/" id="navbardrop" data-toggle="dropdown">
+                <i class="fas fa-male icons"></i>
+                Faculty
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/ORS/Faculty/"><i class="fas fa-male"></i> Faculty</a>
+                <a class="dropdown-item" href="/ORS/FacultyList/"><i class="fas fa-list"></i> FacultyList</a>
+
+            </div>
+        </li>
+        {%endif%}
+
+        {% if request.session.user.role_Name == "Admin" or request.session.user.role_Name == "Faculty" %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/ORS/Marksheet/" id="navbardrop" data-toggle="dropdown">
+                <i class="fas fa-chart-bar icons"></i>
+                Marksheet
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/ORS/Marksheet/"><i class="fas fa-chart-bar"></i> Marksheet</a>
+                <a class="dropdown-item" href="/ORS/MarksheetList/"><i class="fas fa-list"></i> MarksheetList</a>
+                <a class="dropdown-item" href="/ORS/MarksheetMeritList/"><i class="fas fa-list"></i> MarksheetMeritList</a>
+            </div>
+        </li>
+
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/ORS/Student/" id="navbardrop" data-toggle="dropdown">
+                <i class="fas fa-id-badge icons"></i>
+                Student
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/ORS/Student/"><i class="fas fa-id-badge"></i> Student</a>
+                <a class="dropdown-item" href="/ORS/StudentList/"><i class="fas fa-list"></i> StudentList</a>
+
+            </div>
+        </li>
+
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/ORS/Subject/" id="navbardrop" data-toggle="dropdown">
+                <i class="fas fa-folder-open icons"></i>
+                Subject
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/ORS/Subject/"><i class="fas fa-folder-open"></i> Subject</a>
+                <a class="dropdown-item" href="/ORS/SubjectList/"><i class="fas fa-list"></i> SubjectList</a>
+
+            </div>
+        </li>
+
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/ORS/TimeTable/" id="navbardrop" data-toggle="dropdown">
+                <i class="fas fa-table icons"></i>
+                TimeTable
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/ORS/TimeTable/"><i class="fas fa-table"></i> TimeTable</a>
+                <a class="dropdown-item" href="/ORS/TimeTableList/"><i class="fas fa-list"></i> TimeTableList</a>
+
+            </div>
+        {%endif%}
+
+        {% if request.session.user.role_Name == "Student" %}
+        <li class="nav-item ">
+            <a class="nav-link" href="/">Marksheet <span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item ">
+            <a class="nav-link" href="/">Timetable<span class="sr-only"></span></a>
+        </li>
+
+        <li class="nav-item ">
+            <a class="nav-link" href="/">Attendence<span class="sr-only"></span></a>
+        </li>
+        {%endif%}
+      </ul>
+
+      <ul class="navbar-nav" >
+        {% if request.session.user.role_Name == None %}
+        <li class="nav-item dropdown my-2 my-lg-0" >
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" >
+                <i class="fa fa-user icons"></i>  Hi Guest
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/ORS/Login/"><i
+                    class="fas fa-sign-in-alt"></i>Login</a>
+            <a class="dropdown-item" href="/ORS/Registration/"><i
+                    class="fas fa-user-plus"></i>Registration</span></a>
+            </div>
+        </li>
+        {%endif%}
+
+        {% if request.session.user.role_Name != None %}
+        <li class="nav-item dropdown my-2 my-lg-0">
+            <a class="nav-link dropdown-toggle" href="/ORS/ChangePassword/" id="navbarDropdrop" data-toggle="dropdown">
+                <i class="fas fa-info-circle icons"></i>
+                     {{request.session.user.firstName}}
+                    {{request.session.user.lastName}}-({{request.session.user.role_Name}})
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/ORS/ChangePassword/"><i class="fas fa-key"></i> ChangePassword</a>
+                <a class="dropdown-item" href="/auth/Logout/"><i class="fas fa-sign-out-alt"></i> LOGOUT</a>
+                <a class="dropdown-item" href="/ORS/MyProfile/"><i class="fas fa-user-circle"></i> MyProfile</a>
+            </div>
+        </li>
+
+        {%endif%}
+        </ul>
+    </div>
+</nav>
+
+
+<!-- -------------------------------Edit--------------------------------- -->

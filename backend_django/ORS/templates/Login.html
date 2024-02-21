@@ -1,0 +1,63 @@
+{%extends "./base.html"%}
+{%load static%}
+
+{%block child_block%}
+<head>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+  <div class="center">
+
+    <h1 style="color: rgb(6, 54, 248);">Login</h1>
+
+    <div id="timeout">
+      {% if form.out %}
+        <h3 style="color:red;text-align:center;font-size:25px;font-family:serif;">{{ form.out }}</h3>
+      {% endif %}
+
+
+      {% if request.session.msg != None %}
+        <h3
+        style="color:red;text-align: center; font-size: 25px; font-family:serif;">
+        {{ request.session.msg }}</h3>
+      {% endif %}
+
+      {% if form.error %}
+        <p style="color: red;text-align: center;font-size: 25px; font-family:serif;"> {{ form.message }}</p>
+      {% else %}
+        <p style="color:red  ;text-align: center;font-size: 25px; font-family:serif;"> {{ form.message }}</p>
+      {% endif %}
+    </div>
+
+    <form method="POST" action="/ORS/Login/" novalidate>
+      
+
+      <div class="txt_field">
+        <input type="text" required value="{{ form.login_id }}" name="login_id">
+        <span></span>
+        <label>Email</label>
+        <span style="color:red">{{ form.inputError.login_id }}</span>
+      </div>
+      
+      <div class="txt_field">
+        <input type="password" required value="{{ form.password }}" name="password">
+        <span></span>
+        <label>Password</label>
+        <div style=" color:red;">{{ form.inputError.password }}</div>
+      </div>
+
+
+      <div class="pass"><a href="/ORS/ForgetPassword">Forgot Password?</a></div>
+
+      <input type="submit" value="Login">
+
+      <div class="signup_link">
+        <span>Not a member? <a href="/ORS/Registration">Signup</a></span>  
+      </div>
+    </form>
+  </div>
+
+</body>
+
+{%endblock%}

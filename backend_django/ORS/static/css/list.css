@@ -1,0 +1,17 @@
+.input-name
+{
+    width: 90%;
+    position: relative;
+    margin: 20px auto;
+    text-align: center;
+}
+.name
+{
+    width: 25%;
+    padding: 8px 0 8px 40px;
+} 
+.input-name span
+{
+    margin-left: 35px;
+} 
+

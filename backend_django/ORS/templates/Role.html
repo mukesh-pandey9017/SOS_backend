@@ -1,0 +1,53 @@
+{%extends "./base.html"%}
+{%load static%}
+
+{%block child_block%}
+<head>
+  <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Role Information</h2>
+        <div class="form-container">
+            <form method="POST">
+                
+                <div id="timeout">
+                    {% if form.error %}
+                        <p style="color:red;text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
+                    {% else %}
+                        <p class="messages" style="color:rgb(13, 237, 13);text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
+                    {% endif %}
+                </div>
+
+            <input type="hidden" name="id" value="{{ form.id }}">
+            <div class="input-name">
+                <i class="fas fa-user icon"></i>
+                <input type="text" placeholder="Enter Role Name" name="name" value="{{form.name}}" class="text-name">
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:1px">{{form.inputError.name}}</span>
+            </div>
+            <div class="input-name">
+                <i class="fa fa-paragraph icon"></i>
+                <input type="text" placeholder="Enter Description" name="description" value="{{form.description}}" class="text-name">
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:1px">{{form.inputError.description}}</span>
+            </div>
+            
+            <div class="input-button">
+                <div class="row">
+               <input type="submit" class="button" value="Save" style="margin-left:145px ;"> 
+               <a href="/ORS/Role/" class="button-1" style="text-align:center">Reset</a>
+               </div>
+            </div>
+            </form>
+                
+        </div>
+
+    </div>
+    
+</body>
+
+{%endblock%}

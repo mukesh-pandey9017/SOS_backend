@@ -1,0 +1,17 @@
+{% load static %}
+
+<body>
+    {% if request.session.user == None %}
+    <div  style="text-align:center;">
+        <p style="position: fixed;bottom:-20px;width:100%;background-color:rgb(27, 27, 27);color:rgb(241, 235, 235);padding:10px 10px">
+            <b>Copyright &copy; Rays Technologies</b> <b >Since-2006</b>
+        </p>
+    </div>
+    {% else %}
+    <div style="text-align:center;">
+        <p style="position: fixed;bottom:-25px;width:100%;background-color: transparent;padding:10px 10px;color:black;border-top:3px solid transparent">
+            <b>Copyright &copy; Rays Technologies</b> <b >Since-2006</b>
+        </p>
+    </div>
+    {% endif %}
+</body>

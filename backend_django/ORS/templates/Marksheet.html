@@ -1,0 +1,95 @@
+{%extends "./base.html"%}
+{%load static%}
+
+{%block child_block%}
+<head>
+  <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Marksheet</h2>
+        <div class="form-container">
+            <form method="POST">
+                
+                <div id="timeout">
+                    {% if form.error %}
+                        <p style="color:red;text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
+                    {% else %}
+                        <p style="color:rgb(13, 237, 13);text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
+                    {% endif %}
+                </div>
+                
+
+            <input type="hidden" name="id" value="{{ form.id }}">
+
+            <div class="input-name">
+                <label style="margin-right: 2px;">Roll No.<span style="color: red;margin-left:5px">*</span></label>
+                <span style="margin-right: 20px;">
+                    <i class="fa fa-id-card icon"></i>
+                <input type="text" placeholder="Enter Roll No" name="rollNumber" value="{{form.rollNumber}}" class="name" style="width: 60%;">
+                </span>
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:115px">{{ form.inputError.rollNumber }}</span>
+            </div>
+            <div class="input-name">
+                <label style="margin-right: 14px;">Name<span style="color: red;margin-left:5px">*</span></label>
+                <span style="margin-right: 20px;">
+                    <i class="fa fa-user icon"></i>
+                <input type="text" placeholder="Enter Your Name" name="name" value="{{form.name}}" class="name" style="width: 60%;">
+                </span>
+
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:115px">{{ form.inputError.name }}</span>
+            </div>
+            <div class="input-name">
+                <label style="margin-right: 5px;">Physics<span style="color: red;margin-left:5px">*</span></label>
+                <span style="margin-right: 20px;">
+                    <i class="fas fa-equals icon"></i>
+                <input type="text" placeholder="Enter Your Physics Marks" name="physics" value="{{form.physics}}" class="name" style="width: 60%;">
+                </span>
+
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:115px">{{ form.inputError.physics }}</span>
+            </div>
+            <div class="input-name">
+                <label style="margin-right: -11px;">Chemistry<span style="color: red;margin-left:5px">*</span></label>
+                <span style="margin-right: 20px;">
+                    <i class="fas fa-equals icon"></i>
+                <input type="text" placeholder="Enter Your Chemistry Marks" name="chemistry" value="{{form.chemistry}}" class="name" style="width: 60%;">
+                </span>
+
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:115px">{{ form.inputError.chemistry }}</span>
+            </div>
+            <div class="input-name">
+                <label style="margin-right: 10px;">Maths<span style="color: red;margin-left:5px">*</span></label>
+                <span style="text-align:right">
+                    <i class="fas fa-equals icon"></i>
+                <input type="text" placeholder="Enter Your Maths Marks" name="maths" value="{{form.maths}}" class="name" style="width: 60%;">
+                </span>
+
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:115px">{{ form.inputError.maths }}</span>
+            </div>
+             
+            <div class="input-button">
+                <div class="row">
+               <input type="submit" class="button" value="Save" style="margin-left:145px ;">
+               <a href="" class="button-1" style="text-align:center">Reset</a>
+               </div>
+            </div>
+            </form>
+            
+        </div>
+
+    </div>
+
+</body>
+
+{%endblock%}

@@ -1,0 +1,68 @@
+{%extends "./base.html"%}
+{%load static%}
+
+{%block child_block%}
+<head>
+  <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+</head>
+
+<style>
+    
+    p { 
+        display: inline-block;
+        width: 50%;     
+    }
+    
+</style>
+
+
+<body>
+    <div class="container">
+        <h2>My Profile Information</h2>
+        <div class="form-container">
+            
+            <div class="input-name">
+                <i class="fa fa-user icon"></i>
+                <p  name="firstName" class="name">{{ form.firstName}}</p>
+                <span>
+                    <i class="fa fa-user icon"></i>
+                    <p name="lastName" class="name">{{ form.lastName}}</p>
+                </span>
+            </div>
+            
+            <div class="input-name">
+                <i class="fa fa-envelope icon"></i>
+                <p name="login_id" class="text-name">{{ form.login_id }}</p>
+            </div>
+            
+            <div class="input-name">
+                <i class="fa fa-lock icon"></i>
+                <p name="password"  class="text-name">*****</p>
+            </div>
+            
+            <div class="input-name">
+                <i class="fa fa-address-book icon"></i>
+                <p class="name" name="gender">{{ form.gender }}</p>
+                <span >
+                    <i class="fa fa-calendar icon"></i>
+                    <p name="dob" class="name">{{ form.dob }}</p>
+                </span>
+            </div>
+            
+            <div class="input-name">
+                <i class="fa fa-address-book icon"></i>
+                <p name="address" class="name">{{ form.address }}</p>
+                <span>
+                    <i class="fa fa-mobile icon"></i>
+                    <p name="mobilenumber" class="name">{{ form.mobilenumber }}</p>
+                </span>
+            </div>
+           
+        </div>
+
+    </div>
+
+  
+</body>
+
+{%endblock%}

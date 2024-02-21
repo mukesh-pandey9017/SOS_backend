@@ -1,0 +1,77 @@
+{%extends "./base.html"%}
+{%load static%}
+
+{%block child_block%}
+<head>
+  <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h2>College </h2>
+        <div class="form-container">
+            <form method="POST" >
+                
+                <div id="timeout">
+                    {% if form.error %}
+                        <p style="color:red;text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
+                    {% else %}
+                        <p style="color:rgb(13, 237, 13);text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
+                    {% endif %}
+                </div>
+
+            <input type="hidden" name="id" value="{{ form.id }}">
+            
+            <div class="input-name">
+                <i class="fas fa-university icon"></i>
+                <input type="text" placeholder="Enter Your College Name" name="collegeName" value="{{form.collegeName}}" class="text-name">
+            </div>
+            <div class="input-name" >
+                <span style="color: red; margin-left:5px">{{form.inputError.collegeName}}</span>
+            </div>
+            
+            <div class="input-name">
+                <i class="fa fa-address-book icon"></i>
+                <input type="text" placeholder="Enter your Address" name="collegeAddress" value="{{form.collegeAddress}}" class="text-name">
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:5px">{{form.inputError.collegeAddress}}</span>
+            </div>
+            
+            <div class="input-name">
+                <i class="fas fa-map-signs icon"></i>
+                <input type="text" placeholder="Enter your State" name="collegeState" value="{{form.collegeState}}" class="text-name">
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:5px">{{form.inputError.collegeState}}</span>
+            </div>
+            <div class="input-name">
+                <i class="fas fa-landmark icon"></i>
+                <input type="text" placeholder="Enter your city" name="collegeCity" value="{{form.collegeCity}}" class="text-name">
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:5px">{{form.inputError.collegeCity}}</span>
+            </div>
+            <div class="input-name">
+                <i class="fa fa-mobile icon"></i>
+                <input type="text" placeholder="Enter your Phone No." name="collegePhoneNumber" value="{{form.collegePhoneNumber}}" class="text-name">
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:5px">{{form.inputError.collegePhoneNumber}}</span>
+            </div>
+            
+            <div class="input-button" >
+                <div class="row">
+               <input type="submit" class="button" value="Save" style="margin-left:145px ;">
+               <a href="" class="button-1" style="text-align:center">Reset</a>
+               </div>
+            </div>
+            </form>
+
+        </div>
+
+    </div>
+    
+</body>
+
+{%endblock%}

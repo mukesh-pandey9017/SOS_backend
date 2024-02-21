@@ -1,0 +1,48 @@
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #2e2f2fdf;
+    min-width: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(224, 179, 31, 0.2);
+    border-radius: 10px;
+}
+
+/* Links inside the dropdown */
+.dropdown-menu a {
+    color: whitesmoke;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-menu a:hover {
+    background-color: #c8bfc8d7         
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+    display: inline-block;
+}
+
+.nav-item 
+{
+    font: 1.0em sans-serif;
+    border-radius: 10px;
+    display: inline-block ;
+
+}
+
+.nav-link
+{
+    color: white !important;
+    font-size: large;
+    display: block;
+    
+}
+
+
+.icons{
+    color: rgb(240, 240, 25);
+}
+

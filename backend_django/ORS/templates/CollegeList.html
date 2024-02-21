@@ -1,0 +1,154 @@
+{%extends "./base.html"%}
+{%load static%}
+
+{%block child_block%}
+<head>
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+</head>
+
+<body class="container-fluid">
+
+    <h1 style="text-align: center;">College List</h1>
+    <form method="POST" action="/ORS/CollegeList/">
+        
+        <div class="container-fluid">
+            <div class="input-name">
+                <input class="name" name="collegeName" value="{{form.collegeName}}" placeholder="Enter College Name">
+                <span><button type="submit" class="btn btn-primary"  value="Search">Search
+                <i class="fas fa-search"></i></button></span>
+            </div>
+        </div>
+
+        <table border="1" width="50%">
+            <div id="timeout">
+
+                {% if form.error %}
+                <p style="color: red;font-size:26px;font-family:serif;text-align:center">{{ form.message }}</p>
+                {% else %}
+                <p style="color:rgb(35,151,41);font-size:26px;font-family:serif;text-align: center;">{{ form.message }}</p>
+                {% endif %}
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-responsive-sm table-striped table-hover">
+                        <thead class="thead">
+                            <tr class="table-primary">
+                                <th scope="col" style="text-align: center;"><input type="checkbox"  id="select_all" onchange="selectAll(this)">Select</th>
+
+                                <th scope="row" style="text-align: center;">S.NO.</th>
+                                <th scope="row">NAME</th>
+                                <th scope="row">ADDRESS</th>
+                                <th scope="row">STATE</th>
+                                <th scope="row">CITY</th>
+                                <th scope="row">PHONE_NO.</th>
+                                <th scope="row">EDIT</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for e in pageList %}
+                            <tr>
+                                <td style="text-align: center;"><input type="checkbox" name="ids" class="checkbox" onchange="selectone(this)" value="{{ e.id }}"></td>
+                                <td style="text-align: center;">{{ form.index|add:forloop.counter0 }}</td>
+                                <td>{{ e.collegeName }}</td>
+                                <td>{{ e.collegeAddress }}</td>
+                                <td>{{ e.collegeState }}</td>
+                                <td>{{ e.collegeCity }}</td>
+                                <td>{{ e.collegePhoneNumber }}</td>
+                                <td><a href="/ORS/College/edit/{{ e.id }}/">Edit
+                                    <i class="fas fa-edit"></i>
+                                </a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+        </table>
+
+        <br>
+        {% if form.msg %}
+            <b style="font-size:26px;font-family:serif; margin-left:660px">{{form.msg}}</b><br><br>
+            <a class="btn btn-primary" href="/ORS/CollegeList/" style="margin-left:720px">Back</a><br>
+        {% else %}
+        <div class="row" align="center">
+            <div class="col-lg-2"></div>
+            {% if form.pageNo == 1 %}
+                <div class="col-lg-1">
+                    <input disabled type="submit" class="btn btn-dark float-left" name="operation" value="previous">
+                </div>
+            {% else %}
+                <div class="col-lg-1">
+                    <input  type="submit" class="btn btn-primary" name="operation" value="previous">
+                </div>
+            {% endif %}
+            <div class="col-lg-2"></div>
+            <div class="col-lg-1">
+                <input type="submit" class="btn btn-danger" name="operation" value="Delete">
+            </div>
+            
+            <div class="col-md-1">
+                <a href="/ORS/College/">
+                    <font class="btn btn-success" data-target="#update" data-toggle="modal">ADD
+                        <i class="fas fa-plus-circle"></i>
+                    </font>
+                </a>
+            </div>
+            <div class="col-lg-2"></div>
+            
+            {% if pageList|length < 5 or form.LastId == form.MaxId %} 
+                <div class="col-lg-1">
+                    <input disabled type="submit" class="btn btn-dark" name="operation" value="next">
+                </div>
+            {% else %}
+                <div class="col-lg-1">
+                    <input type="submit" class="btn btn-primary" name="operation" value="next" >
+                </div>
+            {% endif %}
+        
+        </div>
+
+        {%endif%}        
+    </form>
+
+</body>
+
+
+{%endblock%}
+
+
+
+<!-- <br><br>
+<div class='pagination justify-content-center fix-1' >
+    {% if pageList.has_previous %}
+        <input type="submit"  class="btn btn-primary" name="operation" value="Previous"/>
+    {%else%}
+        <input disabled type="submit"  class="btn btn-primary" name="operation" value="Previous"/>
+    {% endif %}
+
+    <span class='mx-4' >
+        <input disabled class="btn" value="Page {{ pageList.number }} of {{ pageList.paginator.num_pages }}">
+    </span>
+
+    {% if pageList.has_next %}
+        <input type="submit" class="btn btn-primary" name="operation" value="Next">
+    {%else%}
+        <input disabled type="submit"  class="btn btn-primary" name="operation" value="Next"/>
+    {% endif %}
+</div>
+
+<br><br>
+
+<div class='pagination justify-content-center fix-2'>
+        <input name="curr_pg_no" type="hidden" value= "{{pageList.number}}"></input>
+        <input type="submit" class="btn btn-danger btn-lg" name="operation" value="Delete">
+
+    <span class='mx-4'>
+        &nbsp;
+    </span>
+
+    <a href="/ORS/College">
+        <font class="btn btn-success btn-lg" data-target="##update" data-toggle="modal">ADD
+            <i class="fas fa-plus-circle"></i></font>
+    </a>
+</div>
+
+

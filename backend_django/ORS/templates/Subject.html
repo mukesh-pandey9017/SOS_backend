@@ -1,0 +1,68 @@
+{%extends "./base.html"%}
+{%load static%}
+
+{%block child_block%}
+<head>
+  <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Subject</h2>
+        <div class="form-container">
+            <form method="POST">
+                
+                <div id="timeout">
+                    {% if form.error %}
+                        <p style="color:red;text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
+                    {% else %}
+                        <p style="color:rgb(13, 237, 13);text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
+                    {% endif %}
+                </div>
+                
+                <input type="hidden" name="id" value="{{ form.id }}">
+                <div class="input-name">
+                    <i class="fas fa-book-open icon"></i>
+                    <input type="text" placeholder="Enter Subject Name" name="subjectName" value="{{form.subjectName}}"
+                        class="text-name">
+                </div>
+                <div class="input-name">
+                    <span style="color: red;margin-left:1px">{{form.inputError.subjectName}}</span>
+                </div>
+                <div class="input-name">
+                    <i class="fa fa-paragraph icon"></i>
+                    <input type="text" placeholder="Subject Description" name="subjectDescription"
+                        value="{{form.subjectDescription}}" class="text-name">
+                </div>
+                <div class="input-name">
+                    <span style="color: red;margin-left:1px">{{form.inputError.subjectDescription}}</span>
+                </div>
+                <div class="input-name">
+                    <label for="course_ID">Course Name<span style="color: red;margin-left:2px">*</span></label>
+                    <select class="role" name="course_ID">
+
+                        <option value="{{form.course_ID}}">{{ form.courseName }}</option>
+                        {% for form in courseList %}
+                        <option value="{{ form.id }}">{{ form.courseName }}</option>
+                        {% endfor %}
+                    </select>
+                    <span style="color:red;margin-left:1px">{{ form.inputError.course_ID }}</span>
+
+                </div>
+                <br>
+                <div class="input-button">
+                    <div class="row">
+                        <input type="submit" class="button" value="Save" style="margin-left:145px ;">
+                        <a href="" class="button-1" style="text-align:center">Reset</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+
+{%endblock%}

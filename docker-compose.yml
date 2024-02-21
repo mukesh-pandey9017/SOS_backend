@@ -1,0 +1,51 @@
+version: '3.8'
+services:
+  angular-app:
+    build:
+      context: ./frontend_angular
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend_angular/dist/frontend_angular:/usr/share/nginx/html
+
+  django-app:
+    build:
+      context: ./backend_django
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      mysqlDB:
+        condition: service_healthy
+    volumes:
+      - ./backend_django:/app
+    environment:
+      - DJANGO_DB_HOST=mysqlDB
+      - DJANGO_DB_PORT=3306
+      - DJANGO_DB_NAME=mydb
+      - DJANGO_DB_USER=myuser
+      - DJANGO_DB_PASSWORD=mypassword
+    
+    entrypoint: sh -c "cd /app && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    # command: ./docker-entrypoint.sh
+  
+  
+  mysqlDB:
+    image: mysql:8.1
+    container_name: mysqlDB
+    environment:
+      MYSQL_ROOT_PASSWORD: mysecretpassword
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+        test: "/usr/bin/mysql --user=root --password=mysecretpassword --execute \"SHOW DATABASES;\""
+        interval: 2s
+        timeout: 20s
+        retries: 10
+
+volumes:
+  mysql-data:

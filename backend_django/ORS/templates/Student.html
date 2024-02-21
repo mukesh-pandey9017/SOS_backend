@@ -1,0 +1,93 @@
+{%extends "./base.html"%}
+{%load static%}
+
+{%block child_block%}
+<head>
+  <link rel="stylesheet" href="{% static 'css/registration.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Student </h2>
+        <div class="form-container">
+            <form method="POST">
+                
+                <div id="timeout">
+                    {% if form.error %}
+                        <p style="color:red;text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
+                    {% else %}
+                        <p style="color:rgb(13, 237, 13);text-align:center;font-size:26px;font-family:serif;"> {{ form.message }} </p>
+                    {% endif %}
+                </div>
+
+            <input type="hidden" name="id" value="{{ form.id }}">
+
+            <div class="input-name">
+                <i class="fa fa-user icon"></i>
+                <input type="text" placeholder="Enter First Name" name="firstName" value="{{form.firstName}}" class="name">
+                <span>
+                    <i class="fa fa-user icon"></i>
+                <input type="text" placeholder="Enter Last Name" name="lastName" value="{{form.lastName}}" class="name">
+                </span>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <span style="color: red;margin-left:27px;">{{ form.inputError.firstName }}</span>   
+                </div>
+                <div class="col-lg-6">
+                    <span style="color: red;">{{ form.inputError.lastName }}</span>
+                </div>
+            </div>
+
+            <div class="input-name" style="padding-bottom: 25px;">
+                <label for="collegeName">College Name<span style="color: red;margin-left:2px">*</span></label>
+                <select class="role" name="college_ID">
+                    <option value="{{form.college_ID}}">{{ form.collegeName }}</option>
+                    {% for form in collegeList %}
+                    <option value="{{ form.id }}">{{ form.collegeName }}</option>
+                    {% endfor %}
+                </select>
+                <span style="color:red;margin-left:1px">{{ form.inputError.college_ID }}</span>
+            </div>
+            
+            <div class="input-name">
+                <i class="fas fa-calendar icon"></i>
+                <input type="date" placeholder="Enter your dob" name="dob" value="{{form.dob}}" class="text-name">
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:1px">{{form.inputError.dob}}</span>
+            </div>
+
+            <div class="input-name">
+                <i class="fa fa-mobile icon"></i>
+                <input type="text" placeholder="Enter your Mobile No." name="mobileNumber" value="{{form.mobileNumber}}" class="text-name">
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:1px">{{form.inputError.mobileNumber}}</span>
+            </div>
+
+            <div class="input-name">
+                <i class="fa fa-envelope icon"></i>
+                <input type="email" placeholder="Enter your Email" name="email" value="{{form.email}}" class="text-name">
+            </div>
+            <div class="input-name">
+                <span style="color: red;margin-left:1px">{{form.inputError.email}}</span>
+            </div>
+
+            <div class="input-button">
+                <div class="row">
+               <input type="submit" class="button" value="Save" style="margin-left:145px ;">
+               <a href="" class="button-1" style="text-align:center">Reset</a>
+               </div>
+            </div>
+            </form>
+        
+           
+        </div>
+
+    </div>
+    
+</body>
+
+{%endblock%}
