@@ -1,14 +1,5 @@
 version: '3.8'
 services:
-  angular-app:
-    build:
-      context: ./frontend_angular
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
-    volumes:
-      - ./frontend_angular/dist/frontend_angular:/usr/share/nginx/html
-
   django-app:
     build:
       context: ./backend_django
